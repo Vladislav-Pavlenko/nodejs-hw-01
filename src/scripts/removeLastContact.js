@@ -4,13 +4,11 @@ import * as fs from 'node:fs/promises';
 
 export const removeLastContact = async () => {
   const contactList = await getAllContacts();
-  if (contactList.length > 0) {
+  if (contactList.length < 1) {
     console.log('Error,  array is empty!');
     return;
   }
-  console.log(contactList);
   contactList.pop();
-
   await fs.writeFile(PATH_DB, JSON.stringify(contactList, null, 2));
 };
 
